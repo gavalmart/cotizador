@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-body">
+                <div>
+                    <h5>Capacidades en HDDs</h5>
+                </div>
+                <div>
+                    <a href="{% url 'agregar_capacidad' %}"  class="button btn-success btn-sm" id="addButton" data-toggle="tooltip" data-placement="right" title="Agregar Capacidad"><i class="fa-solid fa-plus"></i></a>
+                </div>
+            </div>
+            <div class="card card-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Capacidad</th>
+                        <th>Unidad de Medida</th>
+                        <th>Activo</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    
+                    {% for capacidad in capacidades %}
+                        <tr>
+                            <td>{{ capacidad.valor }}</td>
+                            <td>{{ capacidad.unidadMedida }}</td>
+
+                            {% if fabricante.activo %}
+                                <td>{{ 'Activo' }}</td>
+                            {% else %}
+                                <td>{{ 'No Activo' }}</td>
+                            {% endif %}
+            
+                            <td><a href="{% url 'actualizar_capacidad' capacidad.id %}" class="button btn-success btn-sm actualizar" data-toggle="tooltip" data-placement="right" title="Actualizar Capacidad"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                            <td><a href="{% url 'eliminar_capacidad' capacidad.id %}" class="button btn-danger btn-sm eliminar" data-toggle="tooltip" data-placement="right" title="Eliminar Capacidad"><i class="fa-solid fa-trash"></i></a></td>
+                        </tr>
+                    {% endfor %}
+                </table>    
+            </div>
+        </div>
+        
+    </div>
+
+
+{% endblock  %}

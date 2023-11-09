@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block contenido %}
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-body">
+                <div>
+                    <h5>Modelos de NAS</h5>
+                </div>
+                <div>
+                    <a href="{% url 'agregar_modeloNas' %}"  class="button btn-success btn-sm" id="addButton" data-toggle="tooltip" data-placement="right" title="Agregar Modelo NAS"><i class="fa-solid fa-plus"></i></a>
+                </div>
+            </div>
+            <div class="card card-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Fabricante</th>
+                        <th>Modelo</th>
+                        <th>Año Lanzamiento</th>
+                        <th>Años Garantía</th>
+                        <th>Bahías Internas</th>
+                        <th>Presentación</th>
+                        <th>Activo</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    
+                    {% for nasModelo in nasModelos %}
+                        <tr>
+                            <td>{{ nasModelo.fabricante.nombre }}</td>
+                            <td>{{ nasModelo.modelo }}</td>
+                            <td>{{ nasModelo.anioLanzamiento }}</td>
+                            <td>{{ nasModelo.garantiaAnios }}</td>
+                            <td>{{ nasModelo.cantidadBahiasInternas }}</td>
+                            {% if nasModelo.esRackeable %}
+                                <td>{{ 'Rack' }}</td>
+                            {% else %}
+                                <td>{{ 'Escritorio' }}</td>
+                            {% endif %}
+                            {% if nasModelo.activo %}
+                                <td>{{ 'Activo' }}</td>
+                            {% else %}
+                                <td>{{ 'No Activo' }}</td>
+                            {% endif %}
+            
+                            <td><a href="{% url 'actualizar_modeloNas' nasModelo.id %}" class="button btn-success btn-sm actualizar" data-toggle="tooltip" data-placement="right" title="Actualizar Modelo NAS"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                            <td><a href="{% url 'eliminar_modeloNas' nasModelo.id %}" class="button btn-danger btn-sm eliminar" data-toggle="tooltip" data-placement="right" title="Eliminar Modelo NAS"><i class="fa-solid fa-trash"></i></a></td>
+                        </tr>
+                    {% endfor %}
+                </table>    
+            </div>
+        </div>
+        
+    </div>
+
+{% endblock %}

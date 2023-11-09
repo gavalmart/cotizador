@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block contenido %}
+
+    <div class="col-md-3">
+        <div class="card text-left text-gray mb-3" >
+            <div class="card-header">
+                <h5 class="card-title">{{titulo}}</h5>
+            </div>
+
+            <div class="card-body">
+                <div class="form-group">
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        {{forma}}
+                        <hr style="color: whitesmoke">
+                        <input type="submit" name="Enviar">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido  %}
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-body">
+                <div>
+                    <h5>Modelos de Discos</h5>
+                </div>
+                <div>
+                    <a href="{% url 'agregar_modeloDisco' %}"  class="button btn-success btn-sm" id="addButton" data-toggle="tooltip" data-placement="right" title="Agregar Modelo Discos"><i class="fa-solid fa-plus"></i></a>
+                </div>
+            </div>
+            <div class="card card-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Modelo</th>
+                        <th>Modelo Largo</th>
+                        <th>Descripción</th>
+                        <th>Fabricante</th>
+                        <th>Capacidad</th>
+                        <th>Presentación</th>
+                        <th>rpms</th>
+                        <th>activo</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    
+                    {% for discoModelo in discoModelos %}
+                        <tr>
+                            <td>{{ discoModelo.modeloCorto }}</td>
+                            <td>{{ discoModelo.modeloLargo }}</td>
+                            <td>{{ discoModelo.descripcion }}</td>
+                            <td>{{ discoModelo.fabricante.nombre }}</td>
+                            <td>{{ discoModelo.capacidad }}</td>
+                            {% if discoModelo.esSSD %}
+                                <td>{{ 'SSD' }}</td>
+                            {% else %}
+                                <td>{{ 'HDD' }}</td>
+                            {% endif %}
+                            <td>{{ discoModelo.rpms }}</td>
+                            {% if discoModelo.activo %}
+                                <td>{{ 'Activo' }}</td>
+                            {% else %}
+                                <td>{{ 'No Activo' }}</td>
+                            {% endif %}
+            
+                            <td><a href="{% url 'actualizar_modeloDisco' discoModelo.id %}" class="button btn-success btn-sm actualizar" data-toggle="tooltip" data-placement="right" title="Actualizar Modelo Disco"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                            <td><a href="{% url 'eliminar_modeloDisco' discoModelo.id %}" class="button btn-danger btn-sm eliminar" data-toggle="tooltip" data-placement="right" title="Eliminar Modelo Disco"><i class="fa-solid fa-trash"></i></a></td>
+                        </tr>
+                    {% endfor %}
+                </table>    
+            </div>
+        </div>
+        
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-body">
+                <div>
+                    <h5>Historial de Compras</h5>
+                </div>
+                <div>
+                    <a href="{% url 'agregar_historialCompras' %}"  class="button btn-success btn-sm" id="addButton" data-toggle="tooltip" data-placement="right" title="Agregar Registro Compra"><i class="fa-solid fa-plus"></i></a>
+                </div>
+            </div>
+            <div class="card card-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Código</th>
+                        <th>Proveedor</th>
+                        <th>Fecha Compra</th>
+                        <th>Activa</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    
+                    {% for compra in compras %}
+                        <tr>
+                            <td>{{ compra.codigo }}</td>
+
+
+                            <td>{{ compra.proveedor.nombre}}</td>
+
+                            <td>{{ compra.fechaCompra }}</td>
+
+                            {% if compra.activo %}
+                                <td>{{ 'Activo' }}</td>
+                            {% else %}
+                                <td>{{ 'No Activo' }}</td>
+                            {% endif %}
+            
+                            <td><a href="{% url 'actualizar_historialCompras' compra.id %}" class="button btn-success btn-sm actualizar" data-toggle="tooltip" data-placement="right" title="Actualizar Registro Compra"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                            <td><a href="{% url 'eliminar_historialCompras' compra.id %}" class="button btn-danger btn-sm eliminar" data-toggle="tooltip" data-placement="right" title="Eliminar Registro Compra"><i class="fa-solid fa-trash"></i></a></td>
+                        </tr>
+                    {% endfor %}
+                </table>    
+            </div>
+        </div>
+        
+    </div>
+
+
+{% endblock  %}
