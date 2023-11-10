@@ -38,11 +38,11 @@
             Control Hardware
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Proveedores</a>
-            <a class="dropdown-item" href="#">Fabricantes</a>
-            <a class="dropdown-item" href="#">Capacidades de Discos Duros</a>
-            <a class="dropdown-item" href="#">Modelos de Discos Duros</a>
-            <a class="dropdown-item" href="#">Modelos de NAS</a>
+            <a class="dropdown-item" href="{% url 'listar_proveedores' %}">Proveedores</a>
+            <a class="dropdown-item" href="{% url 'listar_fabricantes'  %}">Fabricantes</a>
+            <a class="dropdown-item" href="{% url 'listar_capacidad' %}">Capacidades de Discos Duros</a>
+            <a class="dropdown-item" href="{% url 'listar_modeloDisco' %}">Modelos de Discos Duros</a>
+            <a class="dropdown-item" href="{% url 'listar_modeloNas' %}">Modelos de NAS</a>
           </div> 
             
         </li>
@@ -64,7 +64,7 @@
             Control Inventario
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">&nbsp;</a>
+            <a class="dropdown-item" href="{% url 'listar_historialCompras' %}">Historial de Compras</a>
             <a class="dropdown-item" href="#">&nbsp;</a>
             <a class="dropdown-item" href="#">&nbsp;</a>
           </div> 
