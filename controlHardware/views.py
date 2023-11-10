@@ -7,8 +7,8 @@ from .models import NasModelo, DiscoModelo
 
 # Create your views here.
 def inicio(request):
-    return HttpResponse('inicio')
-
+    #return HttpResponse('inicio')
+    return render(request, 'base.html')
 
 def test(request):
     return HttpResponse('test')
